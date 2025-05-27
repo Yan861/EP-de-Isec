@@ -1,14 +1,23 @@
 import numpy as np
+import itertools as it
 
 alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
-#cifra monoalfabetica
-def mono(k,c):
-    c=m*k
-    m=c*k-1
-    
-#cifra de vigenere
+def traduzir(palavra):
+    traducao =[]
+    lista= list(palavra)
+    for item in lista: 
+        traducao.append(alfabeto.index(item))
+    return traducao
 
+def traduzirNumero(numeros):
+    traducao = []
+    for numero in numeros:
+        traducao.append(alfabeto[numero])
+    return traducao
+def forcaBruta(n=None):
+    chaves = it.permutations(range(26),n)
+    return chaves
 
 # cifra de hill
 def determinanteMatriz(list):
@@ -34,6 +43,21 @@ def matrizCortada(matriz, i,j):
             r.append(aux)
     return r
 
+def fabricaChavesMatriz(n, list):
+    result = []
+    for chave in list:
+        matrizAux = np.zeros((n,n))
+        it =0
+        #fazendo a matriz
+        for i in range(len(matrizAux)):
+            for j in range(len(matrizAux)):
+                matrizAux[i][j]=chave[it]
+                it+=1
+        #testando se a matriz é invertivel, se for adicionamos as chaves possiveis
+        if(determinanteMatriz(matrizAux)!=0):
+            result.append(matrizAux)
+    
+    return result
 #deus me perdoe pelo que eu to fazendo nesse metodo
 def inverterMatriz(list):
     matriz = np.array(list)
@@ -54,7 +78,5 @@ def inverterMatriz(list):
     return result
 
 #teste 
-minha_matriz = np.array([[17,17,5],[21, 18,21],[2,2,19]])
 
 
-print(inverterMatriz(minha_matriz))
