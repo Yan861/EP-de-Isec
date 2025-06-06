@@ -7,8 +7,14 @@ def mono(c):
     textoAberto=''
 
     cifradoNumerico=utils.traduzir(c)
-    chaves = utils.forcaBruta()
-    
+    chaves = utils.it.permutations(range(26))
+    for chave in chaves:
+        textoAberto=''
+        for element in cifradoNumerico:
+            textoAberto+=chave[element] #operação monoalfabetica
+        if(): #condição de parada
+            chaveCerta=''.join(utils.traduzirNumero(chave))
+            break
     return chaveCerta, textoAberto
 
 #cifra de vigenere
@@ -19,7 +25,15 @@ def vigenere(n,c):
 
     cifradoNumerico=utils.traduzir(c)
     chaves = utils.forcaBruta(n)
-    
+    for chave in chaves:
+        textoAberto=''
+        i=0
+        for element in cifradoNumerico:
+            textoAberto+=(chave[i]+cifradoNumerico[i])%26
+            i+=1
+        if(): #condição de parada
+            chaveCerta=''.join(utils.traduzirNumero(utils.inversoAditivo(chave)))
+            break
     return chaveCerta, textoAberto
 
 def hill(n,c):
@@ -85,4 +99,3 @@ def main():
     file.close()
     #teste
     hill(2,"aaabba")
-

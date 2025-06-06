@@ -16,9 +16,16 @@ def traduzirNumero(numeros):
         traducao.append(alfabeto[numero])
     return traducao
 def forcaBruta(n=None):
-    chaves = it.permutations(range(26),n)
+    chaves = it.combinations_with_replacement(range(26),n)
+    
     return chaves
+# cifra de vigenere
 
+def inversoAditivo(list):
+    listaInversa=[]
+    for element in list:
+        listaInversa.append((26-element)%26)
+    return listaInversa
 # cifra de hill
 def determinanteMatriz(list):
     matriz = np.array(list)
@@ -72,7 +79,7 @@ def inverterMatriz(list):
             aux = matrizCortada(matriz,line,column)
             detAux= determinanteMatriz(aux)
 
-            result[line][column] = (int)(detAux*inv)%26 #agora ta no grau
+            result[line][column] = (int)(detAux*inv)%26 
 
     
     return result
