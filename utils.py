@@ -1,7 +1,9 @@
 import numpy as np
 import itertools as it
+from math import ceil
 
 alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+
 
 def traduzir(palavra):
     traducao =[]
@@ -84,6 +86,19 @@ def inverterMatriz(list):
     
     return result
 
+
+def chunk_into_n(lst, n):
+  size = ceil(len(lst) / n)
+  return list(
+    map(lambda x: lst[x * size:x * size + size],
+    list(range(n)))
+  )
+def multiplicarMatriz(matriz1, matriz2):
+    result = np.matmul(matriz1, matriz2)
+    for i in range(len(result)):
+        for j in range(len(result)):
+            result[i][j]=result[i][j]%26
+    return result
 #teste 
 
 
