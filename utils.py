@@ -4,7 +4,7 @@ from math import ceil
 
 alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
-
+#traduzir de letra para numero
 def traduzir(palavra):
     traducao =[]
     lista= list(palavra)
@@ -12,6 +12,7 @@ def traduzir(palavra):
         traducao.append(alfabeto.index(item))
     return traducao
 
+#traduzir de numero pra letra
 def traduzirNumero(numeros):
     traducao = []
     for numero in numeros:
