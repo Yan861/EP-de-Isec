@@ -37,9 +37,12 @@ def vigenere(n,c,dicionario_treinado):
     for chave in chaves:
         textoResp=[]
         i=0
+        
         for element in cifradoNumerico:
             textoResp.append((chave[i]+cifradoNumerico[i])%26)
             i+=1
+            if(i>=len(chave)):
+                i=0
         segmentado = WordSegmenter.segmentar_string_sem_espaco(u''.join(utils.traduzirNumero(textoResp)), dicionario_treinado)
         print(segmentado)
         if(segmentado): #condição de parada
