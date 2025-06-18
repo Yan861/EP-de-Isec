@@ -16,7 +16,7 @@ def mono(c,dicionario_treinado):
         for element in cifradoNumerico:
             textoResp.append(chave[element]) #operação monoalfabetica
         segmentado = WordSegmenter.segmentar_string_sem_espaco(''.join(utils.traduzirNumero(textoResp)), dicionario_treinado)
-        print(segmentado)
+        
         if(segmentado): #condição de parada
             textoAberto=segmentado
             chaveCerta=''.join(utils.traduzirNumero(chave))
@@ -31,8 +31,7 @@ def vigenere(n,c,dicionario_treinado):
     textoAberto=''
     print(f"rodando vigenere {n}")
     cifradoNumerico=utils.traduzir(c)
-    chaves = utils.forcaBruta(n)
-    #print(len(chaves))
+    chaves = utils.forcaBruta(dicionario_treinado,n)
     print("chaves sorteadas")
     for chave in chaves:
         textoResp=[]
@@ -41,10 +40,10 @@ def vigenere(n,c,dicionario_treinado):
         for element in cifradoNumerico:
             textoResp.append((chave[i]+cifradoNumerico[i])%26)
             i+=1
-            if(i>=len(chave)):
+            if(i>=len(chave)):  
                 i=0
-        segmentado = WordSegmenter.segmentar_string_sem_espaco(u''.join(utils.traduzirNumero(textoResp)), dicionario_treinado)
-        print(segmentado)
+        segmentado = WordSegmenter.segmentar_string_sem_espaco(''.join(utils.traduzirNumero(textoResp)), dicionario_treinado)
+        
         if(segmentado): #condição de parada
             textoAberto=segmentado
             chaveCerta=''.join(utils.traduzirNumero(utils.inversoAditivo(chave)))
@@ -60,13 +59,14 @@ def hill(n,c,dicionario_treinado):
     cifradoNumerico = utils.traduzir(c)
     matrizesCifradas=[]
     matrizesAux=utils.chunk_into_n(cifradoNumerico,n*n)
+
     for i in range(len(matrizesAux)):
         arr = utils.np.array(matrizesAux[i])
         matrix = arr.reshape(n, n)
         matrizesCifradas.append(matrix)
 
     print(f"matriz de cifra calculada")
-    chavesaux= utils.forcaBruta(n*n)
+    chavesaux= utils.forcaBruta(dicionario_treinado,n*n)
     print(f"chaves calculadas")
     chaves = utils.fabricaChavesMatriz(n,chavesaux)
     print(f"matrizes de chaves calculadas")

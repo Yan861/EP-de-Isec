@@ -1,6 +1,7 @@
 import numpy as np
 import itertools as it
 from math import ceil
+import WordSegmenter
 
 alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
@@ -18,9 +19,14 @@ def traduzirNumero(numeros):
     for numero in numeros:
         traducao.append(alfabeto[numero])
     return traducao
-def forcaBruta(n=None):
-    chaves = it.combinations_with_replacement(range(26),n)
+def forcaBruta(dicionario,n=None):
+    possibilidades = it.combinations_with_replacement(alfabeto,n)
     
+    chaves=[]
+    for possibilidade in possibilidades:
+        aux=''.join(possibilidade)
+        if(WordSegmenter.segmentar_string_sem_espaco(aux,dicionario)):
+            chaves.append(possibilidade)
     return chaves
 # cifra de vigenere
 
