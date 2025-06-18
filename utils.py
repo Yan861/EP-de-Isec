@@ -26,7 +26,7 @@ def forcaBruta(dicionario,n=None):
     for possibilidade in possibilidades:
         aux=''.join(possibilidade)
         if(WordSegmenter.segmentar_string_sem_espaco(aux,dicionario)):
-            chaves.append(possibilidade)
+            chaves.append(traduzir(possibilidade))
     return chaves
 # cifra de vigenere
 
